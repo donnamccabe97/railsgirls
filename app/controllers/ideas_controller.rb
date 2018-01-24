@@ -10,6 +10,8 @@ class IdeasController < ApplicationController
   # GET /ideas/1
   # GET /ideas/1.json
   def show
+    puts params
+    @idea = Idea.find(params[:id])
   end
 
   # GET /ideas/new
@@ -19,11 +21,14 @@ class IdeasController < ApplicationController
 
   # GET /ideas/1/edit
   def edit
+    @idea = Idea.find(params[:id])
+    render :edit
   end
 
   # POST /ideas
   # POST /ideas.json
   def create
+    puts params
     @idea = Idea.new(idea_params)
 
     respond_to do |format|
@@ -40,6 +45,8 @@ class IdeasController < ApplicationController
   # PATCH/PUT /ideas/1
   # PATCH/PUT /ideas/1.json
   def update
+    puts params
+
     respond_to do |format|
       if @idea.update(idea_params)
         format.html { redirect_to @idea, notice: 'Idea was successfully updated.' }
